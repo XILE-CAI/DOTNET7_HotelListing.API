@@ -1,4 +1,7 @@
+using HotelListing.API.Configurations;
 using HotelListing.API.Data;
+using HotelListing.API.IRepository;
+using HotelListing.API.Repository;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,6 +13,13 @@ builder.Services.AddDbContext<HotelListingDbContext>(options =>
 });
 
 builder.Services.AddControllers();
+
+//add automapper
+builder.Services.AddAutoMapper(typeof(AutoMapperConfig));
+
+//apply repository
+builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+builder.Services.AddScoped<ICountriesRepository, CountriesRepository>();
 
 var app = builder.Build();
 
