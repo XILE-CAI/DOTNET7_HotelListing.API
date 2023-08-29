@@ -64,10 +64,11 @@ namespace HotelListing.API.Controllers
             {
                 return NotFound();
             }
-            
+
+            _mapper.Map(updateCountryDto, country);
             try
             {
-                await _countriesRepository.UpdateAsync(_mapper.Map<Country>(updateCountryDto));
+                await _countriesRepository.UpdateAsync(country);
             }
             catch (DbUpdateConcurrencyException)
             {
