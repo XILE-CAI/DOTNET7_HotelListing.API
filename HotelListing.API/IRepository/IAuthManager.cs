@@ -7,6 +7,6 @@ namespace HotelListing.API.IRepository
     {
         Task<IEnumerable<IdentityError>> Register(RegisterDto registerDto);
 
-        Task<bool> Login(LoginDto loginDto);
+        Task<AuthResponseDto> Login(LoginDto loginDto);
     }
 }
